@@ -75,10 +75,10 @@ def chooseGame(data):
                         room = q["room"]
                         if q["pop"] == "waiting":
                             q["pop"] = "full"
-                            return choice, room, 2
+                            return choice, room, 2, data
                         else:
                             q["pop"] = "waiting"
-                            return choice, room, 1
+                            return choice, room, 1, data
                 if room == "":
                     print("All rooms full, please select another game")
 
@@ -97,7 +97,7 @@ data = readF()
 ReadSquares.ttt(data)
 
 # Transition from selection screen to a game
-game, room, player = chooseGame(data)
+game, room, player, data = chooseGame(data)
 room = 1 + int(room)
 writeF(data)
 
@@ -111,11 +111,11 @@ while not ready and forfeitCount < 1800:
     time.sleep(0.1)
     forfeitCount += 1
     ready = checkReady(room)
-    if ready:
-        forfeitCount = 0
-        gameDict[game].printSquare(data[game][room]["state"])
-    else:
-        clearRoom(data)
+if ready:
+    forfeitCount = 0
+    gameDict[game].printSquare(data[game][room]["state"])
+else:
+    clearRoom(data)
 
 # Play game until won or forfeited
 while not finished and forfeitCount < 1800:
