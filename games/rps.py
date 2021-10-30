@@ -3,6 +3,7 @@
 # 7 8 9
 playerList = ["1", "2"]
 choiceList = ["r", "p", "s"]
+import json
 
 
 def turn(file, room, player):
@@ -31,9 +32,18 @@ def winCheck(player, file):  # check if someone won
     gameState = file
     c1 = file[1]
     c2 = file[2]
+    strTot = player + c1 + c2
     if c1 == c2:
         if c1 != "_":
             print("It's a tie! Go again!")
+            with open("../data.txt") as json_file:
+                data = json.load(json_file)
+            for i in data["Rock Paper Scissors"]:
+                if i["state"] == strTot:
+                    i["state"] = "1__"
+            with open("../data.txt", "w") as json_file:
+                json.dump(data, json_file)
+
         return False
     if c1 == "r":
         if c2 == "s":
