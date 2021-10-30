@@ -16,7 +16,7 @@ def turn(file, room, player):
     try:
         pX = int(input("Please select a square:  "))
     except:
-        pX = int(input("Please select a square:  "))
+        print("Non-Valid square.")
     choosing = True
     while choosing:
         if moveCheck(pX, squares):
@@ -24,9 +24,9 @@ def turn(file, room, player):
             choosing = False
         else:
             try:
-                pX = int(input("Please select a square:  "))
+                pX = int(input("Please select a valid square:  "))
             except:
-                pX = int(input("Please select a square:  "))
+                pX = int(input("Please select a valid square:  "))
             continue
     printSquare(squares)
 
@@ -42,14 +42,17 @@ def turn(file, room, player):
 
 def printSquare(squares):  # display the board
     # row 1
+    print(" ", end="")
     print(squares[1], end=" "),
     print(squares[2], end=" "),
     print(squares[3]),
     # row 2
+    print(" ", end="")
     print(squares[4], end=" "),
     print(squares[5], end=" "),
     print(squares[6]),
     # row 3
+    print(" ", end="")
     print(squares[7], end=" "),
     print(squares[8], end=" "),
     print(squares[9])
