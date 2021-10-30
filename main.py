@@ -1,6 +1,6 @@
 import json
 import time
-from games import ttt, c4, rps, bts
+from games import ttt, c4, rps, bts, hm, chat
 
 
 game = "Selection"
@@ -15,6 +15,8 @@ gameDict = {
     "Rock Paper Scissors": rps,
     "Battleship": bts,
     "AI Battleship": bts,
+    "Hangman": hm,
+    "Chat": chat,
 }
 
 
@@ -40,8 +42,8 @@ class ReadSquares:
         )
 
     def all(data):
-        numRooms = [0, 0]
-        waiting = ["_____", "_____"]
+        numRooms = [0, 0, 0, 0]
+        waiting = ["_____", "_____", "Ready", "_____"]
         for p in data["Tic Tac Toe"]:
             if p["pop"] != "full":
                 numRooms[0] += 1
@@ -52,20 +54,36 @@ class ReadSquares:
                 numRooms[1] += 1
             if p["pop"] == "waiting":
                 waiting[1] = "Ready"
+        for p in data["Hangman"]:
+            if p["pop"] != "full":
+                numRooms[2] += 1
 
-        box = [
-            "    ___________             ____________             ____________",
-            "   |  Tic Tac  |           | Rock Paper |           |     AI     |",
-            "   |    Toe    |           |  Scissors  |           | Battleship |",
-            "   |  {} Rooms  |           |  {} Rooms   |           |   ∞ Rooms  |".format(
+        line1 = [
+            "     ___________             ____________             ____________",
+            "    |  Tic Tac  |           | Rock Paper |           |     AI     |",
+            "    |    Toe    |           |  Scissors  |           | Battleship |",
+            "    |  {} Rooms  |           |  {} Rooms   |           |   ∞ Rooms  |".format(
                 numRooms[0], numRooms[1]
             ),
-            "   |___{}___|           |___{}____|           |____Ready___|".format(
+            "    |___{}___|           |___{}____|           |____Ready___|".format(
                 waiting[0], waiting[1]
             ),
         ]
-        for line in range(len(box)):
-            print(box[line])
+        line2 = [
+            "                 ___________              ___________",
+            "                |  Hangman  |            |   Chat☏   |",
+            "                |           |            |           |",
+            "                |  {} Rooms  |            |  {} Rooms  |".format(
+                numRooms[2], numRooms[3]
+            ),
+            "                |___{}___|            |___{}___|".format(
+                waiting[2], waiting[3]
+            ),
+        ]
+        for line in range(len(line1)):
+            print(line1[line])
+        for line in range(len(line2)):
+            print(line2[line])
 
     def ttt(data):
         numRooms = 0
@@ -121,7 +139,7 @@ def readF():
             data = json.load(json_file)
         return data
     except:
-        return readF
+        return readF()
 
 
 def writeF(new):
@@ -134,6 +152,8 @@ def writeF(new):
 
 def checkTurn(game, room, player):
     data = readF()
+    if game == "Hangman":
+        return True, data[game][room]["state"]
     return (int(data[game][room]["state"][0]) == player), data[game][room]["state"]
 
 
@@ -149,6 +169,8 @@ def chooseGame(data):
         choice = input("Please pick a game listed: ")
         if choice == "Battleship" or choice == "AI Battleship":
             return "Battleship", 0, 1, data
+        if choice == "Chat":
+            return "Chat", 0, 1, data
         for p in data:
             if p == choice:
                 for q in data[choice]:
@@ -167,7 +189,10 @@ def chooseGame(data):
 
 def clearRoom(data):
     data[game][room]["state"] = data[game][0]["state"]
-    data[game][room]["pop"] = "empty"
+    if game == "Hangman":
+        data[game][room]["pop"] = "waiting"
+    else:
+        data[game][room]["pop"] = "empty"
     writeF(data)
 
 
