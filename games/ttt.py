@@ -1,10 +1,14 @@
 # 1 2 3
 # 4 5 6
 # 7 8 9
+import os
+
+# os.system("cls" if os.name == "nt" else "clear")
 playerList = ["X", "O"]
 
 
 def turn(file, room, player):
+    os.system("cls" if os.name == "nt" else "clear")
     squareStr = file[room]["state"]
     squares = []
     for i in squareStr:
