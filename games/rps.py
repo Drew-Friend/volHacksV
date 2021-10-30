@@ -7,6 +7,10 @@ choiceList = ["r", "p", "s"]
 
 def turn(file, room, player):
     gameState = file[room]["state"]
+    if gameState[0] == "1":
+        gameState = "2" + gameState[1:]
+    else:
+        gameState = "2" + gameState[1:]
     print("Rock..")
     print("Paper..")
     print("Scissors..")
