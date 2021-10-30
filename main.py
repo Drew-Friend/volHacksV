@@ -126,7 +126,6 @@ while not finished and forfeitCount < 1800:
     for i in gameDict[game].playerList:
         if gameDict[game].winCheck(i, data[game][room]["state"]):
             gameDict[game].printSquare(data[game][room]["state"])
-            forfeitCount = 0
             finished = True
     if checker and not finished:
         forfeitCount = 0
@@ -137,5 +136,6 @@ while not finished and forfeitCount < 1800:
             gameDict[game].playerList[player - 1], data[game][room]["state"]
         ):
             gameDict[game].printSquare(data[game][room]["state"])
+            finished = True
 clearRoom(data)
 forfeitCount = 0
