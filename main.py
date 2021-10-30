@@ -42,7 +42,7 @@ class ReadSquares:
         )
 
     def all(data):
-        numRooms = [0, 0, 0, 0]
+        numRooms = [0, 0, 0, 1]
         waiting = ["_____", "_____", "Ready", "_____"]
         for p in data["Tic Tac Toe"]:
             if p["pop"] != "full":
