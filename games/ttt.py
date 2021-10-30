@@ -16,7 +16,7 @@ def turn(file, room, player):
     try:
         pX = int(input("Please select a square:  "))
     except:
-        print("Non-Valid square.")
+        pX = -1
     choosing = True
     while choosing:
         if moveCheck(pX, squares):
