@@ -12,8 +12,8 @@ with open("data.txt", "w") as outfile:
 
 with open("data.txt") as json_file:
     data = json.load(json_file)
-    for p in data["Tic Tac Toe"]:
-        print("Room Number: " + p["room"])
-        print("Current Capacity: " + p["pop"])
-        print("Game State: " + p["state"])
-        print("")
+    # for p in data["Tic Tac Toe"]:
+    #     print("Room Number: " + p["room"])
+    #     print("Current Capacity: " + p["pop"])
+    #     print("Game State: " + p["state"])
+    #     print("")

@@ -12,7 +12,7 @@ def turn(file, room, player):
     playerSign = "O"
     if player == 1:
         playerSign = "X"
-
+    printSquare(squares)
     pX = int(input("Please select a square:  "))
     choosing = True
     while choosing:

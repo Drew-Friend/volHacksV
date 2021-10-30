@@ -115,7 +115,6 @@ while not ready and forfeitCount < 1800:
     ready = checkReady(room)
 if ready:
     forfeitCount = 0
-    gameDict[game].printSquare(data[game][room]["state"])
 else:
     clearRoom(data)
 
@@ -123,15 +122,16 @@ else:
 while not finished and forfeitCount < 1800:
     time.sleep(0.1)
     forfeitCount += 1
+    checker, data[game][room]["state"] = checkTurn(room, player)
     for i in gameDict[game].playerList:
         if gameDict[game].winCheck(i, data[game][room]["state"]):
             gameDict[game].printSquare(data[game][room]["state"])
             forfeitCount = 0
             finished = True
-            continue
-    checker, data[game][room]["state"] = checkTurn(room, player)
-    if checker:
+    if checker and not finished:
         forfeitCount = 0
+        gameDict[game].printSquare(data[game][room]["state"])
         data[game][room]["state"] = gameDict[game].turn(data[game], room, player)
         writeF(data)
 clearRoom(data)
+forfeitCount = 0
