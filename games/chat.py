@@ -30,7 +30,7 @@ def turn(file, room, player):
         name = getName()
     data = readF()
     printSquare()
-    mess = input("Input your message, or 'quit' to exit")
+    mess = input("Input your message, or 'quit' to exit:  ")
     if mess == "quit":
         over = True
         return "1_"
