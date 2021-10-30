@@ -1,7 +1,7 @@
 # 1 2 3
 # 4 5 6
 # 7 8 9
-playerList = ["1", "2"]
+playerList = ["1"]
 choiceList = ["r", "p", "s"]
 import json
 
@@ -32,7 +32,7 @@ def winCheck(player, file):  # check if someone won
     gameState = file
     c1 = file[1]
     c2 = file[2]
-    strTot = player + c1 + c2
+    strTot = "2" + c1 + c2
     if c1 == c2:
         if c1 != "_":
             print("It's a tie! Go again!")
