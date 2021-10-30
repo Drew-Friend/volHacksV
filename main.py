@@ -1,5 +1,6 @@
 import json
 import time
+import os
 from games import ttt, c4, rps, bts, hm, chat
 
 
@@ -22,6 +23,7 @@ gameDict = {
 
 class ReadSquares:
     def title():
+        os.system("cls" if os.name == "nt" else "clear")
         print(
             "  _____ _____ _    _               _____   _____          _____  ______ "
         )
