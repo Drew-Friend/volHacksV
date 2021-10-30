@@ -13,14 +13,20 @@ def turn(file, room, player):
     if player == 1:
         playerSign = "X"
     printSquare(squares)
-    pX = int(input("Please select a square:  "))
+    try:
+        pX = int(input("Please select a square:  "))
+    except:
+        pX = int(input("Please select a square:  "))
     choosing = True
     while choosing:
         if moveCheck(pX, squares):
             squares[pX] = playerSign
             choosing = False
         else:
-            pX = int(input("Please select a valid square:  "))
+            try:
+                pX = int(input("Please select a square:  "))
+            except:
+                pX = int(input("Please select a square:  "))
             continue
     printSquare(squares)
 
@@ -87,3 +93,7 @@ def winCheck(player, squares):  # check if someone won
             return True
     else:
         return False
+
+
+def showBoard():
+    print(" 1 2 3\n 4 5 6\n 7 8 9")

@@ -117,7 +117,7 @@ if ready:
     forfeitCount = 0
 else:
     clearRoom(data)
-
+gameDict[game].showBoard()
 # Play game until won or forfeited
 while not finished and forfeitCount < 1800:
     time.sleep(0.1)
