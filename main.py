@@ -55,7 +55,9 @@ def writeF(new):
 
 def checkTurn(room, player):
     data = readF()
-    return int(data["Tic Tac Toe"][room]["state"][0]) == player
+    return (int(data["Tic Tac Toe"][room]["state"][0]) == player), data["Tic Tac Toe"][
+        room
+    ]["state"]
 
 
 def checkReady(room):
@@ -127,7 +129,8 @@ while not finished and forfeitCount < 1800:
             forfeitCount = 0
             finished = True
             continue
-    if checkTurn(room, player):
+    checker, data[game][room]["state"] = checkTurn(room, player)
+    if checker:
         forfeitCount = 0
         data[game][room]["state"] = gameDict[game].turn(data[game], room, player)
         writeF(data)
