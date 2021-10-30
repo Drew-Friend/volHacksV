@@ -26,7 +26,7 @@ def turn(file, room, player):
             try:
                 pX = int(input("Please select a valid square:  "))
             except:
-                pX = int(input("Please select a valid square:  "))
+                pX = -1
             continue
     printSquare(squares)
 
