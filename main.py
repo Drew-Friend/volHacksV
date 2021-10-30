@@ -183,7 +183,7 @@ game, room, player, data = chooseGame(data)
 room = 1 + int(room)
 writeF(data)
 
-print("You are in room {}".format(room))
+print("You are in room {} for {}".format(room, game))
 print("Waiting for match...")
 print(
     "If you are in queue 3 minutes, you will be dropped and must re-enter\nThe same is true if you are inactive in a game for 3 minutes"
