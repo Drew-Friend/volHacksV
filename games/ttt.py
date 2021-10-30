@@ -47,6 +47,7 @@ def printSquare(squares):  # display the board
     print(squares[7], end=" "),
     print(squares[8], end=" "),
     print(squares[9])
+    print("")
 
 
 def moveCheck(choice, squares):  # check validity of move

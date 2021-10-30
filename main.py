@@ -133,5 +133,9 @@ while not finished and forfeitCount < 1800:
         gameDict[game].printSquare(data[game][room]["state"])
         data[game][room]["state"] = gameDict[game].turn(data[game], room, player)
         writeF(data)
+        if gameDict[game].winCheck(
+            gameDict[game].playerList[player - 1], data[game][room]["state"]
+        ):
+            gameDict[game].printSquare(data[game][room]["state"])
 clearRoom(data)
 forfeitCount = 0
