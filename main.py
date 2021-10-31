@@ -193,6 +193,8 @@ def clearRoom(data):
     data[game][room]["state"] = data[game][0]["state"]
     if game == "Hangman":
         data[game][room]["pop"] = "waiting"
+    elif game == "Chat":
+        data[game][room]["pop"] = "full"
     else:
         data[game][room]["pop"] = "empty"
     writeF(data)
